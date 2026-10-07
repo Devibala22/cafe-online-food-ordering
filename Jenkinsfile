@@ -4,19 +4,13 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
         stage('Test') {
             steps {
                 echo 'Running basic application test...'
 
-                bat 'if not exist index.html exit 1'
-                bat 'if not exist style.css exit 1'
-                bat 'if not exist script.js exit 1'
+                sh 'test -f index.html'
+                sh 'test -f style.css'
+                sh 'test -f script.js'
 
                 echo 'Test passed!'
             }
@@ -24,14 +18,14 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                bat 'docker build -t cafe-menu:v1 .'
+                sh 'docker build -t cafe-menu:v1 .'
             }
         }
 
         stage('Docker Deploy') {
             steps {
-                bat 'docker rm -f cafe-menu-v1 || exit 0'
-                bat 'docker run -d --name cafe-menu-v1 -p 8081:80 cafe-menu:v1'
+                sh 'docker rm -f cafe-menu-v1 || true'
+                sh 'docker run -d --name cafe-menu-v1 -p 8081:80 cafe-menu:v1'
             }
         }
     }
