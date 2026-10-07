@@ -22,17 +22,16 @@ pipeline {
             }
         }
 
-        stage('Docker Deploy') {
+        stage('Ansible Deploy') {
             steps {
-                sh 'docker rm -f cafe-menu-v1 || true'
-                sh 'docker run -d --name cafe-menu-v1 -p 8081:80 cafe-menu:v1'
+                sh 'ansible-playbook ansible/deploy.yml'
             }
         }
     }
 
     post {
         success {
-            echo 'Cafe V1 deployed successfully!'
+            echo 'Cafe V1 deployed successfully using Ansible!'
         }
 
         failure {
