@@ -21,15 +21,38 @@
     <!-- Main Content -->
     <main>
 
-        <section class="menu-section">
+       <section class="menu-section">
 
+    <div class="menu-header">
+        <div>
             <h1>Our Menu</h1>
             <p class="subtitle">Choose from our freshly prepared dishes</p>
+        </div>
 
-            <!-- Menu items will be displayed here -->
-            <div id="menu-container" class="menu-container"></div>
+        <button id="cart-button" class="cart-button">
+            🛒 Cart <span id="cart-count">0</span>
+        </button>
+    </div>
 
-        </section>
+    <div id="menu-container" class="menu-container"></div>
+
+    <!-- Cart -->
+    <div id="cart-section" class="cart-section">
+
+        <h2>🛒 Your Cart</h2>
+
+        <div id="cart-items">
+            <p class="empty-cart">Your cart is empty.</p>
+        </div>
+
+        <div class="cart-total">
+            <strong>Total:</strong>
+            <span id="cart-total">₹0</span>
+        </div>
+
+    </div>
+
+</section>
 
     </main>
 

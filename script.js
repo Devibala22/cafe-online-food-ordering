@@ -1,4 +1,3 @@
-
 // Cafe menu data
 const menuItems = [
     {
@@ -45,20 +44,29 @@ const menuItems = [
     }
 ];
 
-// Get the menu container
-const menuContainer = document.getElementById("menu-container");
 
-// Display menu items
-menuItems.forEach(function(item) {
+// Store selected food items
+let cart = [];
+
+
+// Get HTML elements
+const menuContainer = document.getElementById("menu-container");
+const cartItems = document.getElementById("cart-items");
+const cartTotal = document.getElementById("cart-total");
+const cartCount = document.getElementById("cart-count");
+
+
+// Display menu
+menuItems.forEach(function(item, index) {
 
     const card = document.createElement("div");
 
     card.className = "menu-card";
 
     card.innerHTML = `
-        <img 
-            src="${item.image}" 
-            alt="${item.name}" 
+        <img
+            src="${item.image}"
+            alt="${item.name}"
             class="menu-image"
         >
 
@@ -82,8 +90,71 @@ menuItems.forEach(function(item) {
 
             </div>
 
+            <button
+                class="add-cart-button"
+                onclick="addToCart(${index})"
+            >
+                Add to Cart
+            </button>
+
         </div>
     `;
 
     menuContainer.appendChild(card);
 });
+
+
+// Add item to cart
+function addToCart(index) {
+
+    const item = menuItems[index];
+
+    cart.push(item);
+
+    updateCart();
+
+}
+
+
+// Display cart
+function updateCart() {
+
+    cartItems.innerHTML = "";
+
+    if (cart.length === 0) {
+
+        cartItems.innerHTML =
+            '<p class="empty-cart">Your cart is empty.</p>';
+
+    } else {
+
+        cart.forEach(function(item) {
+
+            const cartItem = document.createElement("div");
+
+            cartItem.className = "cart-item";
+
+            cartItem.innerHTML = `
+                <span>${item.name}</span>
+                <span>₹${item.price}</span>
+            `;
+
+            cartItems.appendChild(cartItem);
+
+        });
+    }
+
+
+    // Calculate total
+    let total = 0;
+
+    cart.forEach(function(item) {
+        total += item.price;
+    });
+
+
+    cartTotal.textContent = `₹${total}`;
+
+    cartCount.textContent = cart.length;
+
+}
