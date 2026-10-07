@@ -1,0 +1,22 @@
+---
+- name: Deploy Cafe Food Ordering Application
+  hosts: localhost
+  connection: local
+  become: false
+
+  tasks:
+
+    - name: Remove old cafe container
+      community.docker.docker_container:
+        name: cafe-menu-v1
+        state: absent
+        force_kill: true
+
+    - name: Start new cafe container
+      community.docker.docker_container:
+        name: cafe-menu-v1
+        image: cafe-menu:v1
+        state: started
+        restart_policy: unless-stopped
+        published_ports:
+          - "8081:80"
