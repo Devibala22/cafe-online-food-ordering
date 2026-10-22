@@ -4,64 +4,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Bean & Bite Cafe</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <!-- Header -->
+    <!-- Cafe header -->
     <header class="header">
-        <div class="logo">☕ Bean & Bite</div>
+        <h1>☕ Bean & Bite</h1>
         <p>Fresh Food • Fresh Coffee • Happy Moments</p>
     </header>
 
-    <!-- Main Content -->
-    <main>
+    <main class="container">
 
-       <section class="menu-section">
+        <!-- Menu heading and cart count -->
+        <section class="menu-heading">
+            <div>
+                <h2>Our Menu</h2>
+                <p>Choose from our freshly prepared dishes</p>
+            </div>
 
-    <div class="menu-header">
-        <div>
-            <h1>Our Menu</h1>
-            <p class="subtitle">Choose from our freshly prepared dishes</p>
-        </div>
+            <button class="cart-button" onclick="scrollToCart()">
+                🛒 Cart <span id="cart-count">0</span>
+            </button>
+        </section>
 
-        <button id="cart-button" class="cart-button">
-            🛒 Cart <span id="cart-count">0</span>
-        </button>
-    </div>
+        <!-- V3 food category filters -->
+        <section class="filters">
+            <button class="filter-btn active" data-filter="All">All</button>
+            <button class="filter-btn" data-filter="Veg">Veg</button>
+            <button class="filter-btn" data-filter="Non-Veg">Non-Veg</button>
+        </section>
 
-    <div id="menu-container" class="menu-container"></div>
+        <!-- Menu items are created using JavaScript -->
+        <section id="menu" class="menu-grid"></section>
 
-    <!-- Cart -->
-    <div id="cart-section" class="cart-section">
+        <!-- Selected cart items -->
+        <section id="cart-section" class="cart-section">
+            <h2>🛒 Your Cart</h2>
 
-        <h2>🛒 Your Cart</h2>
+            <div id="cart-items">
+                <p class="empty-cart">Your cart is empty. Add something delicious!</p>
+            </div>
 
-        <div id="cart-items">
-            <p class="empty-cart">Your cart is empty.</p>
-        </div>
-
-        <div class="cart-total">
-            <strong>Total:</strong>
-            <span id="cart-total">₹0</span>
-        </div>
-
-    </div>
-
-</section>
+            <div class="cart-total">
+                <h3>Total:</h3>
+                <h3 id="cart-total">₹0</h3>
+            </div>
+        </section>
 
     </main>
 
-    <!-- Footer -->
     <footer>
-        <p>© 2026 Bean & Bite Cafe</p>
+        <p>Bean & Bite Cafe | Fresh Food, Fresh Moments</p>
     </footer>
 
     <script src="script.js"></script>
-
 </body>
 </html>
