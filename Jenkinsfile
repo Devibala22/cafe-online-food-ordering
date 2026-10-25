@@ -31,7 +31,7 @@ pipeline {
 
     post {
         success {
-            echo 'Cafe V1 deployed successfully using Ansible!'
+            echo 'Cafe V3 deployed successfully using Ansible!'
         }
 
         failure {
